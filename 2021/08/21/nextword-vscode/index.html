@@ -22,7 +22,7 @@
 
   
 
-  <title>vue拖拽 | Hexo</title>
+  <title>nextword-vscode/dic-completion vscode英文单词提示插件 | Hexo</title>
 
   
 
@@ -213,13 +213,13 @@
 
     
 <article id="post">
-  <div class="post-title">vue拖拽</div>
+  <div class="post-title">nextword-vscode/dic-completion vscode英文单词提示插件</div>
   
 <div class="post-meta">
     
     
       <div class="post-meta-item date">
-        <span title="Created 2021.08.20"><i class="far fa-calendar-alt"></i> 2021.08.20</span>
+        <span title="Created 2021.08.21"><i class="far fa-calendar-alt"></i> 2021.08.21</span>
       </div>
       <div class="post-meta-item updated">
         <span title="Updated 2021.08.21"><i class="far fa-calendar-check"></i> 2021.08.21</span>
@@ -229,10 +229,10 @@
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">688 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">338 words</span>
            
         
-          <i class="far fa-clock"></i> <span class="post-count">3 min</span>
+          <i class="far fa-clock"></i> <span class="post-count">1 min</span>
                                
       </div>
      
@@ -241,21 +241,29 @@
 
   
   <div class="content">
-        <div><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>tab切换table，table行可以上下自由移动；并且tab可以左右拖动，双击tab可以编辑</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>项目使用使用的<strong>element ui</strong>，所以在同事的推荐下，使用 <strong>vuedraggable</strong> 实现 vue tab 左右滑动<br>使用 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/391896693," title="知乎链接">el-table-draggable</a> 实现 Vue table 的上下滑动</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>由于要实现 tab 双击可以编辑按钮文字，单击切换 tab，所以没有使用 element ui 的 el-tabs 而是使用 el-radio-group</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-radio-group v-model&#x3D;&quot;tabPosition&quot; style&#x3D;&quot;margin-bottom: 30px;&quot;&gt;</span><br><span class="line">  &lt;el-radio-button label&#x3D;&quot;top&quot;&gt;双击&lt;&#x2F;el-radio-button&gt;</span><br><span class="line">  &lt;el-radio-button label&#x3D;&quot;right&quot;&gt;编辑文案&lt;&#x2F;el-radio-button&gt;</span><br><span class="line">&lt;&#x2F;el-radio-group&gt;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://jsfiddle.net/jpeter06/ppyeo1tg/">双击编辑 失去焦点恢复按钮模式</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-for &#x3D; &quot;todo in todos&quot;&gt;</span><br><span class="line">  &lt;div v-show &#x3D; &quot;todo.edit &#x3D;&#x3D; false&quot;&gt;</span><br><span class="line">    &lt;label @dblclick &#x3D; &quot;todo.edit &#x3D; true&quot;&gt; &#123;&#123;todo.title&#125;&#125; &lt;&#x2F;label&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;input v-show &#x3D; &quot;todo.edit &#x3D;&#x3D; true&quot; v-model &#x3D; &quot;todo.title&quot;</span><br><span class="line">  v-on:blur&#x3D; &quot;todo.edit&#x3D;false; $emit(&#39;update&#39;)&quot;</span><br><span class="line">  @keyup.enter &#x3D; &quot;todo.edit&#x3D;false; $emit(&#39;update&#39;)&quot;&gt;</span><br><span class="line">&lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  todos: [</span><br><span class="line">    &#123; title: &quot;one value&quot;, edit: false &#125;,</span><br><span class="line">    &#123; title: &quot;one value&quot;, edit: false &#125;,</span><br><span class="line">    &#123; title: &quot;otro titulo&quot;, edit: false &#125;,</span><br><span class="line">  ],</span><br><span class="line">  editedTodo: null,</span><br><span class="line">  message: &quot;Hello Vue.js!&quot;,</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  editTodo: function (todo) &#123;</span><br><span class="line">    this.editedTodo &#x3D; todo;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>由于click 和double click是独立的事件，double click 的preventEvent 和stopPropagation并不能阻止click的发生,也就是说double click一定会触发click事件，所以我们监听double click事件去编辑同时也会触发tab切换事件，但是我们不想切换tab。</p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/41303982/vue-js-how-to-handle-click-and-dblclick-events-on-same-element/56046910">vue.js: how to handle click and dblclick events on same element</a></p>
-<p><a target="_blank" rel="noopener" href="https://antenna.io/blog/2018/03/handle-single-and-double-clicks-on-the-same-element-in-vue-js/">Handle single and double clicks on the same element in Vue.js</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    clickCount: 0,</span><br><span class="line">    clickTimer: null,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  handleClick(e) &#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line"></span><br><span class="line">    this.clickCount++;</span><br><span class="line"></span><br><span class="line">    if (this.clickCount &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">      this.clickTimer &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        this.clickCount &#x3D; 0;</span><br><span class="line">        this.$emit(&quot;single-click&quot;);</span><br><span class="line">      &#125;, this.delay);</span><br><span class="line">    &#125; else if (this.clickCount &#x3D;&#x3D;&#x3D; 2) &#123;</span><br><span class="line">      clearTimeout(this.clickTimer);</span><br><span class="line">      this.clickCount &#x3D; 0;</span><br><span class="line">      this.$emit(&quot;double-click&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>同时我们双击出现的input 要加上点击事件 增加 preventEvent 和stopPropagation 防止编辑的时候 tab被唤醒<br>另外当双击tab的时候，要让input focus，我们发现html5的autofocus属性只在第一次有效，所以我们决定加上directives指令，让input被查询的时候被唤醒</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  directives: &#123;</span><br><span class="line">    focus: &#123;</span><br><span class="line">      &#x2F;&#x2F; 指令的定义</span><br><span class="line">      inserted: function (el) &#123;</span><br><span class="line">        el.getElementsByTagName(&quot;input&quot;)[0].focus();</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>然后再el-input上加入 v-focus <code>&lt;el-input v-focus /&gt;</code><br>el-input失去焦点恢复btn <code>&lt;el-input v-focus @blur @keyup.enter.native /&gt;</code></p>
-<p>最后table的数据手动控制method上下移动 置顶 只需要对data数据进行操作即可</p>
+        <div><p>#概述</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/high-moctane/nextword">nextword</a></p>
+<p>#使用</p>
+<ol>
+<li>第一步 下载 nextword-data，也就是英文常用单词库,下载压缩包，解压到本地</li>
+<li>第二部 下载nextword 程序 根据系统选择assets，本地是mac64位的选择<a target="_blank" rel="noopener" href="https://github.com/high-moctane/nextword/releases">nextword_0.0.5_drawin_amd64.tar.gz</a></li>
+</ol>
+<p>#设置</p>
+<p><code>You need to install nextword-data and set &quot;NEXTWORD_DATA_PATH&quot; environment variable. It available at https://github.com/high-moctane/nextword-data</code></p>
+<ol>
+<li><p>本人用的zsh<br>所以在~目录下加入<code>export NEXTWORD_DATA_PATH=/Users/xxx/Documents/nextword/nextword-data-small</code></p>
+</li>
+<li><p>还需要在usr/bin/sh加入nextword命令 否则会提示/user/bin/sh:nextword: Cmomand not found<br>由于我们下载的nextword已经是一个编译好的程序，所以只需要<code>cp /User/xxx/Documents/nextword/nextword /usr/local/bin</code></p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/41542/adding-a-new-executable-to-the-path-environment-variable">adding-a-new-executable-to-the-path-environment-variable</a></p>
+<p>到这一步，本地的nextword在命令行应该可以跑起来了</p>
+<p>然后再vscode 按照 nextword插件就能使用我们刚刚下载的nextword-data单词库了</p>
+<p>不过有点坑的是vscode-nextword会覆盖原有的autocompletion 所以在js等文件中并不好使</p>
+<h1 id="替换插件vscode-dic-completion"><a href="#替换插件vscode-dic-completion" class="headerlink" title="替换插件vscode-dic-completion"></a>替换插件vscode-dic-completion</h1><p>该插件在新版的vscode支持js语法了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;editor.quickSuggestions&quot;: &#123;</span><br><span class="line">  &quot;other&quot;: true,</span><br><span class="line">  &quot;comments&quot;: true, &#x2F;&#x2F; !!!</span><br><span class="line">  &quot;strings&quot;: true   &#x2F;&#x2F; !!!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再vscode的config.json可以指定使用的单词库<code>&quot;dictCompletion.externalUserDictFiles&quot;: [&quot;/Users/xxx/Document/google-1000-english-master/20k.txt&quot;],</code></p>
+<p>单词库下载地址<a target="_blank" rel="noopener" href="https://github.com/first20hours/google-10000-english">google-10000-english</a><br>该插件和大部分语法提示兼容</p>
 </div>
         
           <div class="post-copyright">
@@ -263,7 +271,7 @@
                       <span> Author: 谭崇师</span>
                   </div>
                   <div class="copyright-item">
-                      <span> Link: <a href="http://book.cocoscript.com/2021/08/20/vue-dragger/">http://book.cocoscript.com/2021/08/20/vue-dragger/</a></span>
+                      <span> Link: <a href="http://book.cocoscript.com/2021/08/21/nextword-vscode/">http://book.cocoscript.com/2021/08/21/nextword-vscode/</a></span>
                   </div>
                   <div class="copyright-item">
                       <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
@@ -307,18 +315,14 @@
     
     <div class="post_tags">
       
-        <i class="fas fa-tag"></i> <a href="/tags/vue/" class="tag">vue</a>
+        <i class="fas fa-tag"></i> <a href="/tags/vscode/" class="tag">vscode</a>
       
     </div>
     <div class="post-nav">
       
-        <div class="post-nav-prev post-nav-item">
-            <a href="/2021/08/21/nextword-vscode/" >nextword-vscode/dic-completion vscode英文单词提示插件<i class="fa fa-chevron-left"></i></a>
-        </div>
-      
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2021/02/25/hhkb_iphone_shortcuts/" >hhkb在iphone使用快捷键<i class="fa fa-chevron-right"></i></a>
+            <a href="/2021/08/20/vue-dragger/" >vue拖拽<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>

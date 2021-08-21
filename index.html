@@ -217,6 +217,65 @@
     
       <div class="recent-post-item">
           <div class="post-title ">
+            <a href="/2021/08/21/nextword-vscode/">nextword-vscode/dic-completion vscode英文单词提示插件</a>
+          </div>
+          <div class="post-meta">
+            
+            
+              <div class="post-meta-item date">
+                <span title="Created 2021.08.21"><i class="far fa-calendar-alt"></i> 2021.08.21</span>
+              </div>
+              <div class="post-meta-item updated">
+                <span title="Updated 2021.08.21"><i class="far fa-calendar-check"></i> 2021.08.21</span>
+              </div>
+             
+             
+            
+             <div class="post-meta-item wordcount">
+                
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">338 words</span>
+                   
+                
+                  <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                                       
+              </div>
+             
+        </div>
+          <div class="content">
+            
+                  <p>#概述</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/high-moctane/nextword">nextword</a></p>
+<p>#使用</p>
+<ol>
+<li>第一步 下载 nextword-data，也就是英文常用单词库,下载压缩包，解压到本地</li>
+<li>第二部 下载nextword 程序 根据系统选择assets，本地是mac64位的选择<a target="_blank" rel="noopener" href="https://github.com/high-moctane/nextword/releases">nextword_0.0.5_drawin_amd64.tar.gz</a></li>
+</ol>
+<p>#设置</p>
+<p><code>You need to install nextword-data and set &quot;NEXTWORD_DATA_PATH&quot; environment variable. It available at https://github.com/high-moctane/nextword-data</code></p>
+<ol>
+<li><p>本人用的zsh<br>所以在~目录下加入<code>export NEXTWORD_DATA_PATH=/Users/xxx/Documents/nextword/nextword-data-small</code></p>
+</li>
+<li><p>还需要在usr/bin/sh加入nextword命令 否则会提示/user/bin/sh:nextword: Cmomand not found<br>由于我们下载的nextword已经是一个编译好的程序，所以只需要<code>cp /User/xxx/Documents/nextword/nextword /usr/local/bin</code></p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/41542/adding-a-new-executable-to-the-path-environment-variable">adding-a-new-executable-to-the-path-environment-variable</a></p>
+<p>到这一步，本地的nextword在命令行应该可以跑起来了</p>
+<p>然后再vscode 按照 nextword插件就能使用我们刚刚下载的nextword-data单词库了</p>
+<p>不过有点坑的是vscode-nextword会覆盖原有的autocompletion 所以在js等文件中并不好使</p>
+<h1 id="替换插件vscode-dic-completion"><a href="#替换插件vscode-dic-completion" class="headerlink" title="替换插件vscode-dic-completion"></a>替换插件vscode-dic-completion</h1><p>该插件在新版的vscode支持js语法了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;editor.quickSuggestions&quot;: &#123;</span><br><span class="line">  &quot;other&quot;: true,</span><br><span class="line">  &quot;comments&quot;: true, &#x2F;&#x2F; !!!</span><br><span class="line">  &quot;strings&quot;: true   &#x2F;&#x2F; !!!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再vscode的config.json可以指定使用的单词库<code>&quot;dictCompletion.externalUserDictFiles&quot;: [&quot;/Users/xxx/Document/google-1000-english-master/20k.txt&quot;],</code></p>
+<p>单词库下载地址<a target="_blank" rel="noopener" href="https://github.com/first20hours/google-10000-english">google-10000-english</a><br>该插件和大部分语法提示兼容</p>
+
+             
+          </div>
+        </div>
+      <div class="post-footer">
+        
+    </div>
+    
+      <div class="recent-post-item">
+          <div class="post-title ">
             <a href="/2021/08/20/vue-dragger/">vue拖拽</a>
           </div>
           <div class="post-meta">
